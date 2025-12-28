@@ -18,10 +18,6 @@ jobs:
       with:
         dotnet-version: '9.0.x'
 
-    - name: Install wkhtmltopdf
-      run: |
-        choco install wkhtmltopdf --version=0.12.6.1 -y
-
     - name: Restore
       run: dotnet restore
 
