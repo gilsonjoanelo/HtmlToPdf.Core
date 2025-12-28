@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="HtmlToPdf.Core/HtmlToPdf.Core.csproj" Id="6be1d13f-e1b6-49da-b09c-362f26993a8e" />
+  <Project Path="HtmlToPdf.MVC/HtmlToPdf.MVC.csproj" Id="5db411db-0c92-4093-ac61-640bca57588c" />
+</Solution>

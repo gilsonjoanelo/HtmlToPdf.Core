@@ -1,0 +1,102 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>HtmlToPdf.Core</Title>
+		<PackageProjectUrl></PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/gilsonjoanelo/HtmlToPdf.Core</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>html-to-pdf,pdf,c#,html</PackageTags>
+		<RootNamespace>HtmlToPdf.Core</RootNamespace>
+		<AssemblyName>HtmlToPdf.Core</AssemblyName>
+		<Configurations>Debug;Release</Configurations>
+		<EnableBaseIntermediateOutputPathMismatchWarning>false</EnableBaseIntermediateOutputPathMismatchWarning>
+		<BaseIntermediateOutputPath>..\..\Output\$(MSBuildProjectName.Replace(" ", "_"))\obj\</BaseIntermediateOutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Authors>Gilson Joanelo</Authors>
+		<Company>Gilson Joanelo</Company>
+		<Copyright>Gilson Joanelo 2025/$([System.DateTime]::UtcNow.ToString(yyyy))</Copyright>
+		<Product>$(AssemblyName)</Product>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<OutputPath>..\..\Output\$(AssemblyName)\Debug\</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<OutputPath>..\..\Output\$(AssemblyName)\Release\</OutputPath>
+		<Optimize>True</Optimize>
+
+		<VersionSuffix>$([System.DateTime]::UtcNow.ToString(yyyy)).$([System.DateTime]::UtcNow.ToString(MM)).$([System.DateTime]::UtcNow.ToString(dd)).$([System.DateTime]::UtcNow.ToString(mmff))</VersionSuffix>
+		<AssemblyVersion Condition=" '$(VersionSuffix)' == '' ">0.0.0.1</AssemblyVersion>
+		<AssemblyVersion Condition=" '$(VersionSuffix)' != '' ">$(VersionSuffix)</AssemblyVersion>
+		<Version Condition=" '$(VersionSuffix)' == '' ">0.0.1.0</Version>
+		<Version Condition=" '$(VersionSuffix)' != '' ">$(VersionSuffix)</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="obj\**" />
+		<EmbeddedResource Remove="obj\**" />
+		<None Remove="obj\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<!--win-x64-->
+		<Content Include="runtimes\win-x64\native\wkhtmltox.dll">
+			<Pack>true</Pack>
+			<PackagePath>runtimes/win-x64/native</PackagePath>
+			<PackageCopyToOutput>true</PackageCopyToOutput>
+		</Content>
+		<Content Include="runtimes\win-x64\native\wkhtmltopdf.exe">
+			<Pack>true</Pack>
+			<PackagePath>runtimes/win-x64/native</PackagePath>
+			<PackageCopyToOutput>true</PackageCopyToOutput>
+		</Content>
+		<Content Include="runtimes\win-x64\native\wkhtmltoimage.exe">
+			<Pack>true</Pack>
+			<PackagePath>runtimes/win-x64/native</PackagePath>
+			<PackageCopyToOutput>true</PackageCopyToOutput>
+		</Content>
+		<Content Include="runtimes\win-x64\native\libwkhtmltox.a">
+			<Pack>true</Pack>
+			<PackagePath>runtimes/win-x64/native</PackagePath>
+			<PackageCopyToOutput>true</PackageCopyToOutput>
+		</Content>
+		<!--win-x86-->
+		<Content Include="runtimes\win-x86\native\wkhtmltox.dll">
+			<Pack>true</Pack>
+			<PackagePath>runtimes/win-x86/native</PackagePath>
+			<PackageCopyToOutput>true</PackageCopyToOutput>
+		</Content>
+		<Content Include="runtimes\win-x86\native\wkhtmltopdf.exe">
+			<Pack>true</Pack>
+			<PackagePath>runtimes/win-x86/native</PackagePath>
+			<PackageCopyToOutput>true</PackageCopyToOutput>
+		</Content>
+		<Content Include="runtimes\win-x86\native\wkhtmltoimage.exe">
+			<Pack>true</Pack>
+			<PackagePath>runtimes/win-x86/native</PackagePath>
+			<PackageCopyToOutput>true</PackageCopyToOutput>
+		</Content>
+		<Content Include="runtimes\win-x86\native\libwkhtmltox.a">
+			<Pack>true</Pack>
+			<PackagePath>runtimes/win-x86/native</PackagePath>
+			<PackageCopyToOutput>true</PackageCopyToOutput>
+		</Content>
+	</ItemGroup>
+
+
+</Project>
