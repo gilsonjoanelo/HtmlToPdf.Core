@@ -1,7 +1,3 @@
-﻿Claro 👍 Segue o **README.md formatado e organizado**, mantendo todo o conteúdo, mas com melhor estrutura, títulos, listas e blocos de código em Markdown padrão.
-
----
-
 # HtmlToPdf.Core
 
 Biblioteca para geração de PDF a partir de HTML utilizando o **wkhtmltopdf**.
