@@ -1,28 +1,58 @@
 name: CI - HtmlToPdf
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
+on: [push, pull_request]
+
+env:
+  CONFIGURATION: Release
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
 
 jobs:
-  build:
-    runs-on: windows-latest
+  ci:
+    runs-on: windows-2025
+
+    strategy:
+      fail-fast: false
+      matrix:
+        TEST_SUITE: [Tests-All]
+    timeout-minutes: 120
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v5
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '9.0.x'
+      - name: .NET 9.0
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 9.0.x
 
-    - name: Restore
-      run: dotnet restore
+      - name: Build
+        run: |
+          try {
+            .\build.ps1 -Configuration ${{ env.CONFIGURATION }}
+            exit $LASTEXITCODE
+          }
+          catch {
+            echo $_
+            exit 1
+          }
+        shell: powershell
 
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
+      - name: Tests
+        run: |
+          try {
+            $env:tests_firebird_dir = 'C:\firebird'
 
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+            .\tests.ps1 -Configuration ${{ env.CONFIGURATION }} -TestSuite ${{ matrix.TEST_SUITE }}
+            exit $LASTEXITCODE
+          }
+          catch {
+            echo $_
+            exit 1
+          }
+        shell: powershell
+
+      - name: Publish Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: 'ci_${{ matrix.TEST_SUITE }}_${{ env.CONFIGURATION }}'
+          path: '.\\output\\'
