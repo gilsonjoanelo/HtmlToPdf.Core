@@ -12,23 +12,22 @@ $baseDir = Split-Path -Parent $PSCommandPath
 $frameworkVersion = 'net9.0'
 
 function Prepare() {
-	echo "=== $($MyInvocation.MyCommand.Name) ==="
-	try {
-		echo "=== END ==="
-	}
-	finally {
-		popd
-	}
+	Write-Host "=== $($MyInvocation.MyCommand.Name) ==="
+    pushd $baseDir
+    Write-Host "=== END ==="
 }
 
 function Cleanup() {
 	Write-Host "=== $($MyInvocation.MyCommand.Name) ==="
-
-	Write-Host "=== END ==="
+    popd
+    Write-Host "=== END ==="
 }
 
 function Tests-All() {
-	#Tests-FirebirdClient-Defa
+	Write-Host "=== Running all tests ==="
+    dotnet test "$baseDir\src\HtmlToPdf.Core.slnx" -c $Configuration --framework $frameworkVersion --logger "trx;LogFileName=TestResults.trx"
+    Check-ExitCode
+    Write-Host "=== Tests completed ==="
 }
 
 try {

@@ -18,7 +18,9 @@ function Clean() {
 
 function Build() {
 	dotnet clean "$baseDir\src\HtmlToPdf.Core.slnx" -c $Configuration -v m
+    Check-ExitCode
 	dotnet build "$baseDir\src\HtmlToPdf.Core.slnx" -c $Configuration -p:ContinuousIntegrationBuild=true -v m
+    Check-ExitCode
 }
 
 function Versions() {
