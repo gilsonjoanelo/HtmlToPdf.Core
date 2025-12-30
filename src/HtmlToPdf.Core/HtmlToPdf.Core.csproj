@@ -4,7 +4,6 @@
 		<TargetFramework>net9.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Title>HtmlToPdf.Core</Title>
 		<PackageProjectUrl></PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
@@ -32,6 +31,7 @@
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<OutputPath>..\..\Output\$(AssemblyName)\Release\</OutputPath>
 		<Optimize>True</Optimize>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 
 		<VersionSuffix>$([System.DateTime]::UtcNow.ToString(yyyy)).$([System.DateTime]::UtcNow.ToString(MM)).$([System.DateTime]::UtcNow.ToString(dd)).$([System.DateTime]::UtcNow.ToString(mmff))</VersionSuffix>
 		<AssemblyVersion Condition=" '$(VersionSuffix)' == '' ">0.0.0.1</AssemblyVersion>
