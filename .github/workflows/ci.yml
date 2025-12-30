@@ -26,12 +26,32 @@ jobs:
           dotnet-version: 9.0.x
 
       - name: Build
-        run: .\build.ps1 -Configuration ${{ env.CONFIGURATION }}
         shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $PSNativeCommandUseErrorActionPreference = $true
+
+          Write-Host "Building with Configuration=${{ env.CONFIGURATION }}"
+          .\build.ps1 -Configuration ${{ env.CONFIGURATION }}
+
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "Build failed with exit code $LASTEXITCODE"
+            exit $LASTEXITCODE
+          }
 
       - name: Tests
-        run: .\tests.ps1 -Configuration ${{ env.CONFIGURATION }} -TestSuite ${{ matrix.TEST_SUITE }}
         shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $PSNativeCommandUseErrorActionPreference = $true
+
+          Write-Host "Running tests with Configuration=${{ env.CONFIGURATION }}"
+          .\tests.ps1 -Configuration ${{ env.CONFIGURATION }} -TestSuite ${{ matrix.TEST_SUITE }}
+
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "Tests failed with exit code $LASTEXITCODE"
+            exit $LASTEXITCODE
+          }
 
       - name: Publish Artifacts
         if: always()   # garante que roda mesmo se testes falharem
