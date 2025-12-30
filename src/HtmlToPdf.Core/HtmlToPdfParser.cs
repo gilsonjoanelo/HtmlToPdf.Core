@@ -2,7 +2,7 @@
 
 namespace HtmlToPdf.Core
 {
-    public sealed class HtmlToPdfParser
+    public sealed class HtmlToPdfParser : IDisposable
     {
         private readonly string _wkhtmlPath;
 
@@ -42,5 +42,8 @@ namespace HtmlToPdf.Core
             }
         }
 
+        public void Dispose()
+        {
+        }
     }
 }

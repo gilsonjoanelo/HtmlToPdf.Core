@@ -11,4 +11,36 @@
 	  <ProjectReference Include="..\HtmlToPdf.Core\HtmlToPdf.Core.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="runtimes\win-x64\native\" />
+	  <Folder Include="runtimes\win-x86\native\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\HtmlToPdf.Core\runtimes\win-x64\native\libwkhtmltox.a" Link="runtimes\win-x64\native\libwkhtmltox.a">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Include="..\HtmlToPdf.Core\runtimes\win-x64\native\wkhtmltoimage.exe" Link="runtimes\win-x64\native\wkhtmltoimage.exe">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Include="..\HtmlToPdf.Core\runtimes\win-x64\native\wkhtmltopdf.exe" Link="runtimes\win-x64\native\wkhtmltopdf.exe">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Include="..\HtmlToPdf.Core\runtimes\win-x64\native\wkhtmltox.dll" Link="runtimes\win-x64\native\wkhtmltox.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Include="..\HtmlToPdf.Core\runtimes\win-x86\native\libwkhtmltox.a" Link="runtimes\win-x86\native\libwkhtmltox.a">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Include="..\HtmlToPdf.Core\runtimes\win-x86\native\wkhtmltoimage.exe" Link="runtimes\win-x86\native\wkhtmltoimage.exe">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Include="..\HtmlToPdf.Core\runtimes\win-x86\native\wkhtmltopdf.exe" Link="runtimes\win-x86\native\wkhtmltopdf.exe">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Include="..\HtmlToPdf.Core\runtimes\win-x86\native\wkhtmltox.dll" Link="runtimes\win-x86\native\wkhtmltox.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
 </Project>
