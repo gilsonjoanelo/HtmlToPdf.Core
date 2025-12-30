@@ -26,11 +26,29 @@ jobs:
           dotnet-version: 9.0.x
 
       - name: Build
-        run: .\build.ps1 -Configuration ${{ env.CONFIGURATION }}
+        run: |
+          .\build.ps1 -Configuration ${{ env.CONFIGURATION }}
+          function Check-ExitCode {
+            $exitCode = $LASTEXITCODE
+            if ($exitCode -ne 0) {
+              echo "Non-zero ($exitCode) exit code. Exiting..."
+              exit $exitCode
+            }
+          }
+          Check-ExitCode
         shell: powershell
 
       - name: Tests
-        run: .\tests.ps1 -Configuration ${{ env.CONFIGURATION }} -TestSuite ${{ matrix.TEST_SUITE }}
+        run: |
+          .\tests.ps1 -Configuration ${{ env.CONFIGURATION }}
+          function Check-ExitCode {
+            $exitCode = $LASTEXITCODE
+            if ($exitCode -ne 0) {
+              echo "Non-zero ($exitCode) exit code. Exiting..."
+              exit $exitCode
+            }
+          }
+          Check-ExitCode
         shell: powershell
 
       - name: Publish Artifacts
